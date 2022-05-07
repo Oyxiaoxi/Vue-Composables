@@ -17,19 +17,31 @@ export const useUser = () => {
     user.value = { id: 1, username: loginModel.value.username, email: loginModel.value.email }
     setTimeout(() => {
       router.push('/')
-      ElMessage.success('Login Success')
+      ElMessage({
+        showClose: true,
+        message: 'Login success',
+        type: 'success',
+      })
     }, 1000)
   }
 
   const loggedIn = computed(() => user.value?.id)
   const logout = async () => {
     user.value = null
-    ElMessage.success('Logout Success')
+    ElMessage({
+      showClose: true,
+      message: 'Logout Success',
+      type: 'success',
+    })
   }
 
   const registerModule = ref({})
   const register = async () => {
-    ElMessage.success('Register Success')
+    ElMessage({
+      showClose: true,
+      message: 'Register Success',
+      type: 'success',
+    })
   }
 
   return {

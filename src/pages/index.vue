@@ -3,8 +3,7 @@
 </script>
 
 <template>
-  <Navbars />
-  <!-- <div>
+  <div>
     <div i-carbon-campsite text-4xl inline-block />
     <p>
       <a rel="noreferrer" href="https://github.com/antfu/vitesse-lite" target="_blank">
@@ -12,5 +11,5 @@
       </a>
     </p>
     <div py-4 />
-  </div> -->
+  </div>
 </template>

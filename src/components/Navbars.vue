@@ -2,8 +2,11 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/vue'
 import { MenuIcon, ShoppingCartIcon, XIcon } from '@heroicons/vue/outline'
 
+import { useCart } from '~/composables/useCart'
 import { useUser } from '~/composables/useUser'
+
 const { loggedIn, user, logout } = useUser()
+const { totalProducts } = useCart()
 </script>
 
 <template>
@@ -12,13 +15,17 @@ const { loggedIn, user, logout } = useUser()
       <div class="flex justify-between h-16">
         <div class="flex px-2 lg:px-0">
           <div class="flex-shrink-0 flex items-center">
-            <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
-            <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow">
+            <router-link to="/">
+              <img class="block lg:hidden h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+              <img class="hidden lg:block h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-logo-indigo-600-mark-gray-800-text.svg" alt="Workflow">
+            </router-link>
           </div>
           <div class="hidden lg:ml-6 lg:flex lg:space-x-8">
             <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
             <a href="#" class="border-indigo-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Dashboard </a>
-            <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Team </a>
+            <router-link to="/Product" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium">
+              Product
+            </router-link>
             <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Projects </a>
             <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"> Calendar </a>
           </div>
@@ -33,11 +40,13 @@ const { loggedIn, user, logout } = useUser()
           </DisclosureButton>
         </div>
         <div v-if="loggedIn" class="hidden lg:ml-4 lg:flex lg:items-center">
-          <button type="button" class="flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <span class="sr-only">Cart</span>
-            <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
-          </button>
-
+          <router-link to="/Cart">
+            <button type="button" class="flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <span class="sr-only">Cart</span>
+              <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
+            </button>
+          </router-link>
+          {{ totalProducts }}
           <!-- Profile dropdown -->
           <Menu as="div" class="ml-4 relative flex-shrink-0">
             <div>
@@ -101,10 +110,12 @@ const { loggedIn, user, logout } = useUser()
               {{ user?.email }}
             </div>
           </div>
-          <button type="button" class="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-            <span class="sr-only">Cart</span>
-            <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
-          </button>
+          <router-link to="/Cart">
+            <button type="button" class="ml-auto flex-shrink-0 bg-white p-1 text-gray-400 rounded-full hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              <span class="sr-only">Cart</span>
+              <ShoppingCartIcon class="h-6 w-6" aria-hidden="true" />
+            </button>
+          </router-link>
         </div>
         <div class="mt-3 space-y-1">
           <DisclosureButton as="a" href="#" class="block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100">
