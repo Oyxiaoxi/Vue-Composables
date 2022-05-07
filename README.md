@@ -9,3 +9,4 @@
 ## Vue3 Composition Api 
 
 **useUser**:  Encapsulation of login functions, logic extraction and data sharing.
+**useCart**:  Implementing shopping cart logic encapsulation and state sharing.
