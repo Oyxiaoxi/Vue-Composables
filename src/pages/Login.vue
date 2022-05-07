@@ -1,20 +1,10 @@
 <script setup lang="ts">
 import { useUser } from '~/composables/useUser'
-const { loginModel, user, login, loggedIn, logout } = useUser()
+const { loginModel, login, loggedIn } = useUser()
 </script>
 
 <template>
-  <h2 v-if="loggedIn" mt-6 text-center text-2xl text-gray-600>
-    Welcome {{ user?.username }}
-    <a
-      href="#"
-      inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
-      @click.prevent="logout"
-    >
-      Logout
-    </a>
-  </h2>
-  <div v-if="!loggedIn" min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8>
+  <div v-if="!loggedIn" min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-10>
     <div sm:mx-auto sm:w-full sm:max-w-md>
       <img mx-auto h-12 w-auto src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
       <h2 mt-6 text-center text-3xl font-extrabold text-gray-900>

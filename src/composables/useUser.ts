@@ -6,14 +6,19 @@ const user = useStorage('user', null, undefined, {
 })
 
 export const useUser = () => {
+  const router = useRouter()
   const loginModel = ref({
-    username: '',
-    password: '',
+    username: 'Oyxiaoxi',
+    email: 'Oyxiaoxi@me.com',
+    password: 'secret',
   })
 
   const login = async () => {
-    user.value = { id: 1, username: loginModel.value.username }
-    ElMessage.success('Login Success')
+    user.value = { id: 1, username: loginModel.value.username, email: loginModel.value.email }
+    setTimeout(() => {
+      router.push('/')
+      ElMessage.success('Login Success')
+    }, 1000)
   }
 
   const loggedIn = computed(() => user.value?.id)
